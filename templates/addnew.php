@@ -1,0 +1,50 @@
+<?php
+include_once ('connection.php');
+session_start();
+$sql = $conn->prepare("SELECT * FROM adminlogin WHERE `idadminlogin` = ? ");
+$sql->bind_param('s', ($_SESSION['user_id']));
+ 
+$sql->execute();
+$query = $sql->get_result();
+if ($query->num_rows > 0) {
+	$row = $query->fetch_assoc();
+	$user_active = $row['adminactive'];
+}
+ 
+if (!(isset($_SESSION['user_id'])&& ($_SESSION['user_group']=='Administrator')&& ($_SESSION['user_active']==$user_active)))
+{
+	header('Location: admin_login.html');
+}
+else
+{   
+    $table=$_POST['type'];
+	$ndate = $_POST['date'];
+	$ntitle = $_POST['title'];
+	$ndescshort = $_POST['shortdesc'];
+	$idmy = $_POST['id'];
+	$ndescfull = nl2br(htmlentities($_POST['longdesc']));
+	
+	if($idmy=='NULL'){
+	$sql = $conn->prepare("INSERT INTO $table (title, date, shortdesc ,longdesc)
+			VALUES (?, ?, ? ,?)");
+	         $sql->bind_param('ssss', $ntitle,$ndate,$ndescshort,$ndescfull);
+	}
+			else{
+				$sql = $conn->prepare("UPDATE $table SET title=?, date=?, shortdesc=?, longdesc=? WHERE id=?");
+				$sql->bind_param('sssss', $ntitle,$ndate,$ndescshort,$ndescfull,$idmy);
+			}
+	
+	if ($sql->execute() === TRUE) {
+		echo "New record created successfully";
+		header('Location: admin_main.php');
+	} else {
+		echo "Error";
+	}
+	
+	$conn->close();
+
+	}
+?>
+
+
+

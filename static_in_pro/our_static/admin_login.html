@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Animated login form</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="assets/css/font-awesome.css">
+    
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+
+    
+   <script src="assets/js/admingtbit.min.js"></script>
+
+    
+  </head>
+
+  <body style="background: url('assets/img/fakegtbit.jpg') 100% fixed;">
+
+    <div class="wrapper">
+  <form  method="POST" action="login.php" class="login" id="form1">
+    <p class="title">Log in</p>
+    <input type="text" name="uname" placeholder="Username" autofocus/>
+    <i class="fa fa-user"></i>
+    <input type="password" name="upass" placeholder="Password" />
+    <i class="fa fa-key"></i>
+   
+  <!--  <input type="submit" value="Log-In" name="B1">-->
+    <button type="submit" name="B1">
+      <i class="spinner"></i>
+      <span class="state">Log In</span>
+    </button>
+
+  </form>
+  
+  <footer><a target="blank" href="http://www.gtbit.org/">www.gtbit.com</a></footer>
+  
+</div>
+    <script src='assets/js/jquery.min.js'></script>
+    
+  </body>
+</html>
