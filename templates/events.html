@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>Take part in upcoming events</h1>
+    {% comment %}<div class='col-sm-6 col-sm-offset-3'>{% endcomment %}
+    {% comment %}<h1>{{ title }}</h1>{% endcomment %}
+<!--for search box on top-->
+<form method='GET' action=''>
+<input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
+</form>                
+
+{% for obj in events %}
+
+<p>Title-{{obj.title}}</p>
+
+{% if obj.image %}
+         <img src='{{ obj.image.url }}' class='img-responsive' />
+         <p>{{obj.image}}</p>
+        {% endif %}
+{% comment %}<p>{{obj.image}}</p>{% endcomment %}
+<p>Description-{{obj.details}}</p> 
+<p>Date-{{obj.date}}</p> 
+
+<br/>
+<hr/>
+
+{% endfor %}
+
+</body>
+
+</html>
