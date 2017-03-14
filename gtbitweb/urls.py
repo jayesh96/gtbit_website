@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from notice.views import NoticeListView
+from events.views import EventsListView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^notice/$', NoticeListView.as_view(template_name="index.html"), name = 'notice_list'),
+    url(r'^events/$', EventsListView.as_view(template_name="events.html"), name = 'events_list'),
+
 ]
